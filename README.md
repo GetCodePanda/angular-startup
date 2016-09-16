@@ -1,1 +1,1 @@
-angular get started template file fro the angular.io 
+angular get started template file from the angular.io 
