@@ -30,13 +30,61 @@ var AppComponent = (function () {
 }());
 exports.AppComponent = AppComponent;
 //################################### CRICKETER COMPONENT ################################
+// ################################## Attribute directive ##############################
+// ######################   [style.color]   #############################
+// @Component({
+//     selector:'cricketer',
+//     template:`
+//         <h2 [style.color]=" isTrue ? 'green':'red'">My Favorite Cricketer is Yuvraj...</h2>
+//      `
+// })
+// export class CricketerComponent {
+//     isTrue:boolean = true;
+//     //isTrue:boolean = false;
+// }
+// // ######################   [class.ClassName]   #############################
+// @Component({
+//     selector:'cricketer',
+//     template:`
+//         <h2 [class.green]=" isTrue">My Favorite Cricketer is Yuvraj...</h2>
+//      `,
+//      styles:[`
+//         .green{
+//             color:green
+//         }
+//      `]
+// })
+// export class CricketerComponent {
+//     isTrue:boolean = true;
+//     //isTrue:boolean = false;
+// }
+// // ######################   [ngClass]   #############################
+// @Component({
+//     selector:'cricketer',
+//     template:`
+//         <h2 [ngClass]="{'green':isTrue , 'blue':!isTrue}">My Favorite Cricketer is Yuvraj...</h2>
+//      `,
+//      styles:[`
+//         .green{
+//             color:green;
+//         }
+//         .blue{
+//             color:blue;
+//         }
+//      `]
+// })
+// export class CricketerComponent {
+//     isTrue:boolean = true;
+//     //isTrue:boolean = false;
+// }
+// ######################   [ngStyle]   #############################
 var CricketerComponent = (function () {
     function CricketerComponent() {
     }
     CricketerComponent = __decorate([
         core_2.Component({
             selector: 'cricketer',
-            template: "\n        <h2> My Favorite cricketer is Yuvraj .. </h2>\n     "
+            template: "\n        <h2 [ngStyle]=\"{'color':'lightblue'}\">My Favorite Cricketer is Yuvraj...</h2>\n     "
         }), 
         __metadata('design:paramtypes', [])
     ], CricketerComponent);
