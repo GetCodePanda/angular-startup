@@ -3,7 +3,8 @@
 import {NgModule} from '@angular/core';
 import {BrowserModule} from '@angular/platform-browser';
 import {platformBrowserDynamic} from '@angular/platform-browser-dynamic';
-import {Component, Directive} from '@angular/core';
+import {Component} from '@angular/core';
+import { FormsModule }   from '@angular/forms';
 
 
 // ###################################### APP COMPONENT #################################
@@ -14,87 +15,69 @@ import {Component, Directive} from '@angular/core';
     directives:[CricketerComponent],
     template:`
        <h1>My Favorite cricketer ....</h1> 
-       <cricketer > </cricketer>
+       <cricketer> </cricketer>
     `
 })
 
 export class AppComponent{
-     constructor (){}
+    constructor(){}
 }
 
 
 //################################### CRICKETER COMPONENT ################################
-// ################################## Attribute directive ##############################
+// ##########################  Data Flow ##############################
+// ######################### Interpolation ##########################
+// #########################  Event Binding ########################
+// Two Way Data Binding
 
-// ######################   [style.color]   #############################
-// @Component({
-//     selector:'cricketer',
-//     template:`
-//         <h2 [style.color]=" isTrue ? 'green':'red'">My Favorite Cricketer is Yuvraj...</h2>
-//      `
-// })
 
-// export class CricketerComponent {
-//     isTrue:boolean = true;
-//     //isTrue:boolean = false;
-// }
 
-// // ######################   [class.ClassName]   #############################
-// @Component({
-//     selector:'cricketer',
-//     template:`
-//         <h2 [class.green]=" isTrue">My Favorite Cricketer is Yuvraj...</h2>
-//      `,
-//      styles:[`
-//         .green{
-//             color:green
-//         }
-//      `]
-// })
-
-// export class CricketerComponent {
-//     isTrue:boolean = true;
-//     //isTrue:boolean = false;
-// }
-
-// // ######################   [ngClass]   #############################
-// @Component({
-//     selector:'cricketer',
-//     template:`
-//         <h2 [ngClass]="{'green':isTrue , 'blue':!isTrue}">My Favorite Cricketer is Yuvraj...</h2>
-//      `,
-//      styles:[`
-//         .green{
-//             color:green;
-//         }
-
-//         .blue{
-//             color:blue;
-//         }
-//      `]
-// })
-
-// export class CricketerComponent {
-//     isTrue:boolean = true;
-//     //isTrue:boolean = false;
-// }
-
-// ######################   [ngStyle]   #############################
 @Component({
     selector:'cricketer',
     template:`
-        <h2 [ngStyle]="{'color':'lightblue'}">My Favorite Cricketer is Yuvraj...</h2>
-     `
 
+        <div *ngIf="!isButtonClicked">
+            <h2>Cricketer Info</h2>
+            <input [(ngModel)] = "playerName">
+            <h3>Player Name : {{playerName}}</h3>
+        </div>
+
+        <button *ngIf="!isButtonClicked" (click)="showMore()">ShowMore</button>
+
+         <button *ngIf="isButtonClicked" (click)="showLess()">ShowLess</button>
+         <div *ngIf="isButtonClicked">
+            <h2>Cricketer Info</h2>
+            <h3>Player Name : {{playerName}}</h3>
+            <h3>Player Jersy Number : {{playerJersyNo}}</h3>
+            <h3>Player Birthday : {{playerBirthday}}</h3>
+        </div>
+        
+     `
 })
 
-export class CricketerComponent {}
+export class CricketerComponent {
+    isButtonClicked:boolean = false;
+
+    playerName:string = "AB De Villiers";
+    playerJersyNo:number = 17;
+    playerBirthday:string = "17th Feb";
+    constructor(){}
+
+    showMore(){
+        this.isButtonClicked = true;
+    }
+
+    showLess(){
+        this.isButtonClicked = false
+    }
+
+}
 
 
 // initializing ur app..
 
 @NgModule({
-  imports:[BrowserModule],
+  imports:[BrowserModule,FormsModule],
   declarations:[AppComponent , CricketerComponent],
   bootstrap:[AppComponent]
 })

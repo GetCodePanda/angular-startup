@@ -13,6 +13,7 @@ var core_1 = require('@angular/core');
 var platform_browser_1 = require('@angular/platform-browser');
 var platform_browser_dynamic_1 = require('@angular/platform-browser-dynamic');
 var core_2 = require('@angular/core');
+var forms_1 = require('@angular/forms');
 // ###################################### APP COMPONENT #################################
 // creating main component for this app..
 var AppComponent = (function () {
@@ -22,7 +23,7 @@ var AppComponent = (function () {
         core_2.Component({
             selector: 'my-app',
             directives: [CricketerComponent],
-            template: "\n       <h1>My Favorite cricketer ....</h1> \n       <cricketer > </cricketer>\n    "
+            template: "\n       <h1>My Favorite cricketer ....</h1> \n       <cricketer> </cricketer>\n    "
         }), 
         __metadata('design:paramtypes', [])
     ], AppComponent);
@@ -30,61 +31,27 @@ var AppComponent = (function () {
 }());
 exports.AppComponent = AppComponent;
 //################################### CRICKETER COMPONENT ################################
-// ################################## Attribute directive ##############################
-// ######################   [style.color]   #############################
-// @Component({
-//     selector:'cricketer',
-//     template:`
-//         <h2 [style.color]=" isTrue ? 'green':'red'">My Favorite Cricketer is Yuvraj...</h2>
-//      `
-// })
-// export class CricketerComponent {
-//     isTrue:boolean = true;
-//     //isTrue:boolean = false;
-// }
-// // ######################   [class.ClassName]   #############################
-// @Component({
-//     selector:'cricketer',
-//     template:`
-//         <h2 [class.green]=" isTrue">My Favorite Cricketer is Yuvraj...</h2>
-//      `,
-//      styles:[`
-//         .green{
-//             color:green
-//         }
-//      `]
-// })
-// export class CricketerComponent {
-//     isTrue:boolean = true;
-//     //isTrue:boolean = false;
-// }
-// // ######################   [ngClass]   #############################
-// @Component({
-//     selector:'cricketer',
-//     template:`
-//         <h2 [ngClass]="{'green':isTrue , 'blue':!isTrue}">My Favorite Cricketer is Yuvraj...</h2>
-//      `,
-//      styles:[`
-//         .green{
-//             color:green;
-//         }
-//         .blue{
-//             color:blue;
-//         }
-//      `]
-// })
-// export class CricketerComponent {
-//     isTrue:boolean = true;
-//     //isTrue:boolean = false;
-// }
-// ######################   [ngStyle]   #############################
+// ##########################  Data Flow ##############################
+// ######################### Interpolation ##########################
+// #########################  Event Binding ########################
+// Two Way Data Binding
 var CricketerComponent = (function () {
     function CricketerComponent() {
+        this.isButtonClicked = false;
+        this.playerName = "AB De Villiers";
+        this.playerJersyNo = 17;
+        this.playerBirthday = "17th Feb";
     }
+    CricketerComponent.prototype.showMore = function () {
+        this.isButtonClicked = true;
+    };
+    CricketerComponent.prototype.showLess = function () {
+        this.isButtonClicked = false;
+    };
     CricketerComponent = __decorate([
         core_2.Component({
             selector: 'cricketer',
-            template: "\n        <h2 [ngStyle]=\"{'color':'lightblue'}\">My Favorite Cricketer is Yuvraj...</h2>\n     "
+            template: "\n\n        <div *ngIf=\"!isButtonClicked\">\n            <h2>Cricketer Info</h2>\n            <input [(ngModel)] = \"playerName\">\n            <h3>Player Name : {{playerName}}</h3>\n        </div>\n\n        <button *ngIf=\"!isButtonClicked\" (click)=\"showMore()\">ShowMore</button>\n\n         <button *ngIf=\"isButtonClicked\" (click)=\"showLess()\">ShowLess</button>\n         <div *ngIf=\"isButtonClicked\">\n            <h2>Cricketer Info</h2>\n            <h3>Player Name : {{playerName}}</h3>\n            <h3>Player Jersy Number : {{playerJersyNo}}</h3>\n            <h3>Player Birthday : {{playerBirthday}}</h3>\n        </div>\n        \n     "
         }), 
         __metadata('design:paramtypes', [])
     ], CricketerComponent);
@@ -97,7 +64,7 @@ var AppModule = (function () {
     }
     AppModule = __decorate([
         core_1.NgModule({
-            imports: [platform_browser_1.BrowserModule],
+            imports: [platform_browser_1.BrowserModule, forms_1.FormsModule],
             declarations: [AppComponent, CricketerComponent],
             bootstrap: [AppComponent]
         }), 
