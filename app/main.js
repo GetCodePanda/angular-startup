@@ -22,7 +22,7 @@ var AppComponent = (function () {
         core_2.Component({
             selector: 'my-app',
             directives: [CricketerComponent],
-            template: "\n       <h1>My Favorite cricketer ....</h1> \n       <cricketer > </cricketer>\n    "
+            template: "\n       <h1>My Favorite cricketer ....</h1> \n       <cricketer> </cricketer>\n    "
         }), 
         __metadata('design:paramtypes', [])
     ], AppComponent);
@@ -30,13 +30,61 @@ var AppComponent = (function () {
 }());
 exports.AppComponent = AppComponent;
 //################################### CRICKETER COMPONENT ################################
+// ################################## Structural directive ##############################
+// // ######################   [ngIf]   #############################
+// @Component({
+//     selector:'cricketer',
+//     template:`
+//         <h2 *ngIf="cricketerList">list of best cricketer ...</h2>
+//      `
+// })
+// export class CricketerComponent {
+//     cricketerList:boolean = true;
+//     //cricketerList:boolean = false;
+// }
+// // ######################   [ngFor]   #############################
+// @Component({
+//     selector:'cricketer',
+//     template:`
+//         <div*ngIf="cricketerList">
+//             <h2>list of best cricketer ...</h2>
+//             <ul>
+//                 <li *ngFor="let cricketer of cricketers">
+//                     {{cricketer}}
+//                 </li>
+//             </ul>
+//         </div>
+//      `
+// })
+// export class CricketerComponent {
+//     cricketerList:boolean = true;
+//     //cricketerList:boolean = false;
+//     cricketers:string[] = [
+//         'yuvi',
+//         'dhoni',
+//         'virat',
+//         'raina',
+//         'rohit'
+//     ]
+// }
+// ######################   [ngFor]   #############################
 var CricketerComponent = (function () {
     function CricketerComponent() {
+        this.cricketerList = false;
+        //cricketerList:boolean = true;
+        this.cricketers = [
+            'yuvi',
+            'dhoni',
+            'virat',
+            'raina',
+            'rohit'
+        ];
+        this.bestCricketer = 'yuvi';
     }
     CricketerComponent = __decorate([
         core_2.Component({
             selector: 'cricketer',
-            template: "\n        <h2> My Favorite cricketer is Yuvraj .. </h2>\n     "
+            template: "\n        <div*ngIf=\"cricketerList\">\n            <h2>list of best cricketer ...</h2>\n            <ul>\n                <li *ngFor=\"let cricketer of cricketers\">\n                    {{cricketer}}\n                </li>\n            </ul>\n        </div>\n\n        <div>\n            <span [ngSwitch]= \"bestCricketer\">\n                <span *ngSwitchCase=\"'yuvi'\"> yuvi is always awesome cricketer</span>\n                <span *ngSwitchCase=\"'dhoni'\"> dhoni is always awesome cricketer</span>\n                <span *ngSwitchDefault> virat is always awesome cricketer</span>\n            </span>\n        </div>\n     "
         }), 
         __metadata('design:paramtypes', [])
     ], CricketerComponent);
